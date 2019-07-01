@@ -1,0 +1,13 @@
+.mr-sm-2{
+    /* width: 100%; */
+    margin-left: 10px;
+}
+   
+.form-inline .form-control{
+    /* width: 70%; */ 
+    margin-left: 10px;
+}
+
+.Icon{
+    font-size: 20px;
+}

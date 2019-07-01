@@ -1,0 +1,15 @@
+.titleWelcome{
+    text-align: center;
+    color:white
+}
+.body{
+    /* display: flex; */
+    /* justify-content:center;
+    align-content: flex-start */
+
+    text-align: center
+    
+}
+.btn.btn-primary{
+    margin: 20px;
+} 
