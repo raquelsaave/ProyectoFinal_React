@@ -26,6 +26,9 @@ import Header from './components/Header/Header';
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Profile from './components/Profile/Profile'
+import Bienvenida from './components/Bienvenida/Bienvenida'
+import CreatePost from './components/CreatePost/CreatePost';
+import MyPosts from './components/MyPosts/MyPosts';
 
 class App extends Component {
   render () {
@@ -35,9 +38,12 @@ class App extends Component {
           <Header/>
           {/* <Route exact path="/" component={Landing} /> */}
           <div className="container">
+              <Route exact path="/bienvenida" component={Bienvenida} /> 
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/createpost" component={CreatePost} />
+              <Route exact path="/myposts" component={MyPosts} />
           </div>
           </div>
       </Router>

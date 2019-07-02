@@ -23,6 +23,11 @@ class Header extends Component {
         const loginRegLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
+                    <Link to="/bienvenida" className= "nav-link">
+                        Bienvenido
+                    </Link>
+                </li>
+                <li className="nav-item">
                     <Link to="/login" className= "nav-link">
                         Login
                     </Link>
@@ -37,9 +42,27 @@ class Header extends Component {
 
         const userLink = (
             <ul className="navbar-nav">
+                <li className="nav-item">
+                <Logo />
+                </li>
+            <li className="nav-item">
+                <Link to="/explorar" className= "nav-link">
+                    Explorar
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/myposts" className= "nav-link">
+                    Mis posts
+                </Link>
+            </li>
             <li className="nav-item">
                 <Link to="/profile" className= "nav-link">
-                    User
+                    Perfil
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/createpost" className= "nav-link">
+                    Nueva Publicacion
                 </Link>
             </li>
             <li className="nav-item">
@@ -70,9 +93,9 @@ class Header extends Component {
                 >
                     <ul className="navbar-nav">
                         <li className="nav-items">
-                            <Link to="/" className="nav-link">
+                            {/* <Link to="/" className="nav-link">
                                 Home
-                            </Link>
+                            </Link> */}
                         </li>
                     </ul>
                     {localStorage.usertoken ? userLink : loginRegLink}

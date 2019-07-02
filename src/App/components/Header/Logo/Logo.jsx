@@ -18,7 +18,7 @@ class Logo extends Component {
 
     validation(){
 
-        let destino = '/Main';
+        let destino = '/myposts';
         if(this.props.location.pathname == "/")
         {
             destino="/";
