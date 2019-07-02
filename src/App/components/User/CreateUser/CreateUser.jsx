@@ -6,108 +6,100 @@ import Form from 'react-bootstrap/Form';
 
 //Components
 
-import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
+
 
 
 class CreateUser extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            name: props.data.name || '',
-            lastname: props.data.lastname || '',
-            email: props.data.email || '',
-            username: props.data.username || '',
-            password: props.data.password || '',
-        };
+            name: '',
+            lastname: '',
+            email: '',
+            username: '',
+            password: ''
+        }
+    }
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value })
+    }
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log('User name : ' + this.state.name)
+        console.log('User lastname : ' + this.state.lastname)
+        console.log(' User Email : ' + this.state.email)
+        console.log(' User username : ' + this.state.username)
+        console.log('Password : ' + this.state.password)
 
-        this.updateName = this.updateName.bind(this);
-        this.updateLastName = this.updateLastName.bind(this);
-        this.updateEmail = this.updateEmail.bind(this);
-        this.updateUsername = this.updateUsername.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
-        this.onSubmit = this.handleSubmit.bind(this);
-    }
-    updateName({ target }) {
-        this.setState({ name: target.value });
-    }
-
-    updateLastName({ target }) {
-        this.setState({ lastname: target.value });
-    }
-
-    updateEmail({ target }) {
-        this.setState({ email: target.value });
-    }
-    updateUsername({ target }) {
-        this.setState({ username: target.value });
-    }
-    updatePassword({ target }) {
-        this.setState({ password: target.value });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        var self = this;
-        // On submit of the form, send a POST request with the data to the server.
-        fetch('/api/users', {
-            method: 'POST',
-            body: {
-                task: self.refs.task
-            }
+        const url = '/api/users'
+        const data = { 
+            name: this.state.name, 
+            lastname: this.state.lastname, 
+            email: this.state.email, 
+            username: this.state.username, 
+            password: this.state.password 
+        }
+        fetch(url, {
+            method: 'POST', // or ‘PUT’
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: { 'Content-Type': 'application/json' }
         })
-            .then(function (response) {
-                return response.json()
-            }).then(function (body) {
-                console.log(body);
-            });
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
     }
     render() {
-        const alert = this.state.error && (<Alert variant="danger"> Something went wrong </Alert>);
-
         return (
-                <Form onSubmit={this.onSubmit}>
-                <Form.Group>
-                    <Form.Label> Nombre </Form.Label>
-                    <Form.Control
-                        type="text"
-                        // palceholder="Author Name"
-                        value={this.state.name}
-                        onChange={this.updateName}
-                    />
-                    <Form.Label> Apellido </Form.Label>
-                    <Form.Control
-                        type="text"
-                        // palceholder="Title"
-                        value={this.state.lastname}
-                        onChange={this.updateLastName}
-                    />
-                    <Form.Label> Email </Form.Label>
-                    <Form.Control
-                        type="text"
-                        // palceholder="Title"
-                        value={this.state.email}
-                        onChange={this.updateEmail}
-                    />   
-                    <Form.Label> Username </Form.Label>
-                    <Form.Control
-                        type="text"
-                        // palceholder="Title"
-                        value={this.state.username}
-                        onChange={this.updateUsername}
-                    /> 
-                    <Form.Label> Contraseña </Form.Label>
-                    <Form.Control
-                        type="text"
-                        // palceholder="Title"
-                        value={this.state.password}
-                        onChange={this.updatePassword}
-                    /> 
-                    <Button variant="primary" onClick={() => this.props.submit({...this.state})}>  Go! </Button>
-                </Form.Group>
-            </Form>
-                   
-        );
+            <Modal show={this.props.show} onHide={this.props.hide}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Craer Cuenta</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group>
+                            <Form.Label> Nombre </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="name"
+                                onChange={this.handleChange}
+                            />
+                            <Form.Label> Apellido </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="lastname"
+                                onChange={this.handleChange}
+                            />
+                            <Form.Label> Email </Form.Label>
+                            <Form.Control
+                                type="email"
+                                name="email"
+                                onChange={this.handleChange}
+                            />
+                            <Form.Label> Username </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="username"
+                                onChange={this.handleChange}
+                            />
+                            <Form.Label> Contraseña </Form.Label>
+                            <Form.Control
+                                type="password"
+                                nmae="password"
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" type='submit' value='Add user' >  Go! </Button>
+                </Modal.Footer>
+                {alert}
+            </Modal>
+      
+        )
     }
+
 }
 
 export default CreateUser;
