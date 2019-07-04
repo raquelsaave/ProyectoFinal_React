@@ -29,6 +29,8 @@ import Profile from './components/Profile/Profile'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import CreatePost from './components/CreatePost/CreatePost';
 import MyPosts from './components/MyPosts/MyPosts';
+import PostList from './components/PostList/PostList'
+import FullPost from './components/FullPost/FullPost'
 
 class App extends Component {
   render () {
@@ -44,6 +46,8 @@ class App extends Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/createpost" component={CreatePost} />
               <Route exact path="/myposts" component={MyPosts} />
+              {/* <Route exact path="/myposts/full" component={FullPost} /> */}
+              {/* <Route exact path="/myposts" component={PostList} />  */}
           </div>
           </div>
       </Router>

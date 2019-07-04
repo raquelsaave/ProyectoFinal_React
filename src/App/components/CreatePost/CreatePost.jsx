@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom/';
 import { createPost } from '../userFunction';
+import jwt_decode from 'jwt-decode';
 
 class CreatePost extends Component {
  constructor() {
@@ -12,26 +13,37 @@ class CreatePost extends Component {
         image:"",
         tag: "",
         userId:"",
+        author:'',
         errors: {}
    }
    this.onChange = this.onChange.bind(this)
    this.onSubmit = this.onSubmit.bind(this)
  }
+ componentDidMount() {
+  const token = localStorage.getItem('usertoken');
+  const decoded = jwt_decode(token)
+  this.setState({
+      userId: decoded.id,
+      author: decoded.username
+  });
+  console.log(decoded)
+}
 
  onChange(e){
-   this.setState({ [e.target.title]: e.target.value})
+   this.setState({ [e.target.name]: e.target.value})
  }
  onSubmit(e) {
    e.preventDefault()
     const newPost = {
         title: this.state.title,
+        author: this.state.author,
         opener: this.state.opener,
         content: this.state.content,
         image: this.state.image,
         tag: this.state.tag,
         userId: this.state.userId
     }
-
+    console.log(newPost)
     createPost(newPost).then(res => {
     //   if(res) {
         this.props.history.push("/myposts")
@@ -61,7 +73,7 @@ class CreatePost extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="opener">Opener</label>
+                <label htmlFor="opener">Primer Párrafo</label>
                 <input
                 type="text"
                 className="form-control"
@@ -74,7 +86,7 @@ class CreatePost extends Component {
               <div className="form-group">
                 <label htmlFor="content">Contenido</label>
                 <input
-                type="text"
+                type="textarea"
                 className="form-control"
                 name="content"
                 placeholder="enter content"
@@ -104,7 +116,7 @@ class CreatePost extends Component {
                 onChange={this.onChange}
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="userId">userId</label>
                 <input
                 type="text"
@@ -114,12 +126,12 @@ class CreatePost extends Component {
                 value={this.state.userId}
                 onChange={this.onChange}
                 />
-              </div>
+              </div> */}
               <button 
               type="submit"
               className="btn btn-lg btn-primary btn-block"
               >
-                Register!
+                Publicar!
               </button>
             </form>
           </div>

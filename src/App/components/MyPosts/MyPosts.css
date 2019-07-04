@@ -1,0 +1,10 @@
+.card-deck{
+    margin: 20px;
+}
+p{
+    text-align: left;
+}
+.card-img-top {
+    width: 50%;
+    align-self: center;
+}

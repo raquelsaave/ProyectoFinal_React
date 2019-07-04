@@ -33,31 +33,45 @@ export const createPost = newPost => {
     return axios
         .post('users/createpost', {
             title: newPost.title,
+            author: newPost.author,
             opener: newPost.opener,
             content: newPost.content,
             image: newPost.image,
-            tag: newPost.tag
+            tag: newPost.tag,
+            userId: newPost.userId
         }).then(response => {
-            console.log('Publicado: ' + response)
+            console.log(response)
         }).catch(err => {
             console.log(err);
         })
 }
 
-// export const showPosts = Post => {
-//     return axios
-//         .get('users/myposts', {
-//             title: Post.title,
-//             opener: Post.opener,
-//             content: Post.content,
-//             image: Post.image,
-//             tag: Post.tag
-//         }).then(response => {
-//             response.json();
-//             console.log('Publicado: ' + response)
-//         }).catch(err => {
-//             console.log(err);
-//         })
-// }
+export const deletePost = blogPostId => {
+    return axios
+        .delete(`users/myposts/${blogPostId}`)
+        .then(response => {
+            console.log('Blog Post eliminado: ' + response.data)
+        }).catch(err => {
+            console.log(err);
+        })
+}
+
+export const updatePost = (blogPostId, updatedPost) => {
+    return axios
+        .patch(`users/myposts/${blogPostId}`, {
+            title: updatedPost.title,
+            opener: updatedPost.opener,
+            content: updatedPost.content,
+            image: updatedPost.image,
+            tag: updatedPost.tag,
+        })
+        .then(response => {
+            console.log('Blog Post actualizado: ' + response.data)
+        }).catch(err => {
+            console.log(err);
+        })
+}
+
+
 
 
