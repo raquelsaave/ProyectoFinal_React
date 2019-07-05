@@ -31,6 +31,9 @@ import CreatePost from './components/CreatePost/CreatePost';
 import MyPosts from './components/MyPosts/MyPosts';
 import PostList from './components/PostList/PostList'
 import FullPost from './components/FullPost/FullPost'
+import Explorar from './components/Explorar/Explorar'
+import Presentacion from './components/Presentacion/Presentacion'
+import Footer from './components/Footer/Footer'
 
 class App extends Component {
   render () {
@@ -38,7 +41,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header/>
-          {/* <Route exact path="/" component={Landing} /> */}
+          <Route exact path="/" component={Presentacion} />
           <div className="container">
               <Route exact path="/bienvenida" component={Bienvenida} /> 
               <Route exact path="/register" component={Register} />
@@ -46,9 +49,11 @@ class App extends Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/createpost" component={CreatePost} />
               <Route exact path="/myposts" component={MyPosts} />
-              {/* <Route exact path="/myposts/full" component={FullPost} /> */}
+              <Route exact path="/myposts/full" component={FullPost} />
               {/* <Route exact path="/myposts" component={PostList} />  */}
+              <Route exact path="/explore" component={Explorar} />
           </div>
+          <Footer />
           </div>
       </Router>
     )

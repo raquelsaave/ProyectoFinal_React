@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { createPost } from '../userFunction';
 import jwt_decode from 'jwt-decode';
 
+import './CreatePost.css'
 class CreatePost extends Component {
  constructor() {
    super()
@@ -60,47 +61,47 @@ class CreatePost extends Component {
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb3 font-weigth-normal"> Nueva Publicacion </h1>
+              <h1 className="Post"> New Post </h1>
               <div className="form-group">
-                <label htmlFor="title">Titulo</label>
+                <label htmlFor="title">Title</label>
                 <input
                 type="text"
                 className="form-control"
                 name="title"
-                placeholder="enter title"
+                placeholder="Enter title"
                 value={this.state.title}
                 onChange={this.onChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="opener">Primer Párrafo</label>
+                <label htmlFor="opener">Opener</label>
                 <input
                 type="text"
                 className="form-control"
                 name="opener"
-                placeholder="enter opener"
+                placeholder="Enter opener"
                 value={this.state.opener}
                 onChange={this.onChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="content">Contenido</label>
+                <label htmlFor="content">Content</label>
                 <input
-                type="textarea"
+                as="textarea"
                 className="form-control"
                 name="content"
-                placeholder="enter content"
+                placeholder="Enter content"
                 value={this.state.content}
                 onChange={this.onChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="image">Imagen(url)</label>
+                <label htmlFor="image">Image(url)</label>
                 <input
                 type="text"
                 className="form-control"
                 name="image"
-                placeholder="enter image"
+                placeholder="Enter image"
                 value={this.state.image}
                 onChange={this.onChange}
                 />
@@ -111,7 +112,7 @@ class CreatePost extends Component {
                 type="text"
                 className="form-control"
                 name="tag"
-                placeholder="enter tag"
+                placeholder="Enter tag"
                 value={this.state.tag}
                 onChange={this.onChange}
                 />
@@ -131,7 +132,7 @@ class CreatePost extends Component {
               type="submit"
               className="btn btn-lg btn-primary btn-block"
               >
-                Publicar!
+                Publish!
               </button>
             </form>
           </div>

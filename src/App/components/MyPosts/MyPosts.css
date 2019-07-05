@@ -3,8 +3,42 @@
 }
 p{
     text-align: left;
+    color: gray !important;
 }
 .card-img-top {
     width: 50%;
     align-self: center;
 }
+.flexx{
+    display:block;
+}
+
+.title{
+    color: white;
+}
+/* .tag{
+    color:white
+}
+.Posttitle{
+    color:white !important;
+} */
+
+.todo{
+    display: flex;
+    text-align: center;
+    margin: 20px;
+}
+.imagenlista{
+    width: 30%;
+    align-items: center;
+    margin:10px;
+    align-self: center;
+}
+.contenidopreview{
+    width: 60%;
+    margin:20px;
+    text-align:center;
+}
+/* .container{
+    margin: 40px;
+} */

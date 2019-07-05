@@ -24,7 +24,7 @@ class Header extends Component {
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <Link to="/bienvenida" className= "nav-link">
-                        Bienvenido
+                        Welcome
                     </Link>
                 </li>
                 <li className="nav-item">
@@ -42,27 +42,27 @@ class Header extends Component {
 
         const userLink = (
             <ul className="navbar-nav">
-                <li className="nav-item">
+                <li className="nav-item ">
                 <Logo />
                 </li>
             <li className="nav-item">
-                <Link to="/explorar" className= "nav-link">
-                    Explorar
+                <Link to="/explore" className= "nav-link">
+                    Explore
                 </Link>
             </li>
             <li className="nav-item">
                 <Link to="/myposts" className= "nav-link">
-                    Mis posts
+                    My posts
                 </Link>
             </li>
             <li className="nav-item">
                 <Link to="/profile" className= "nav-link">
-                    Perfil
+                    Profile
                 </Link>
             </li>
             <li className="nav-item">
                 <Link to="/createpost" className= "nav-link">
-                    Nueva Publicacion
+                    New Post
                 </Link>
             </li>
             <li className="nav-item">
@@ -74,7 +74,9 @@ class Header extends Component {
         )
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+            // navbar navbar-expand-lg navbar-light fixed-top
+            // <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+            <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-ligth rounded" >
                 <button
                 className="navbar-toggler"
                 type="button"

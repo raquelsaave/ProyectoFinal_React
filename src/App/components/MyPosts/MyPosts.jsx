@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode';
 // import { showPosts } from '../userFunction';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
+import CardColumns from 'react-bootstrap/CardColumns';
 import { deletePost, updatePost } from '../userFunction'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -23,12 +24,13 @@ class MyPosts extends Component {
       todoListEdit: '',
       myposts: null,
       editing: false,
+      date: '',
     }
-    this.getPosts = this.getPosts.bind(this);
+    // this.getPosts = this.getPosts.bind(this);
     this.delete = this.delete.bind(this);
     // this.editTodo = this.editTodo.bind(this);
     // this.update = this.update.bind(this);
-    // this.showMyPosts = this.showMyPosts.bind(this);
+    this.showMyPosts = this.showMyPosts.bind(this);
     this.editItem = this.editItem.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -40,7 +42,7 @@ class MyPosts extends Component {
 
   closeModal() {
     this.setState({ editing: false });
-    this.getPostS();
+    // this.getPosts();
   }
 
 
@@ -53,32 +55,34 @@ class MyPosts extends Component {
       userId: decoded.id
     });
     console.log(decoded.id);
-    this.getPosts();
-    // this.showMyPosts();
+    // this.getPosts();
+
+    this.showMyPosts(decoded.id);
   }
 
-  getPosts() {
-    // Retrieves the list of items from the Express app
-    fetch('users/myposts').then((resp) => {
-      resp.json().then((posts) => {
-        this.setState({ posts })
+  // getPosts() {
+  //   // Retrieves the list of items from the Express app
+  //   fetch('users/myposts').then((resp) => {
+  //     resp.json().then((posts) => {
+  //       console.log(posts)
+  //       this.setState({ posts })
+  //     }).catch((err) => {
+  //       console.log('error:' + err);
+  //     })
+  //   })
+  // }
+
+  showMyPosts(id) {
+    fetch(`http://localhost:5000/users/myposts/${id}`).then((resp) => {
+      console.log(resp);
+      resp.json().then((myposts) => {
+        // console.log(comments)
+        this.setState({ myposts })
       }).catch((err) => {
-        console.log('error:' + err);
+        console.log(err)
       })
     })
   }
-
-  // showMyPosts(){
-  //   let copy = this.state.posts;
-  //   let mine = [];
-  //   for (let i = 0; i < copy.length; i++) {
-  //         let todo = copy[i]
-  //         if (todo.userId === this.state.userId) {        // if it’s the correct ID...
-  //           mine.push(copy[i])
-  //       }
-  //     }
-  //   this.setState({myposts: mine}) // we update state
-  // }
 
   delete(id) {
     deletePost(id).catch(console.log);
@@ -105,82 +109,151 @@ class MyPosts extends Component {
   // }
   onSubmit(e) {
     e.preventDefault()
-     const updatedPost = {
-         title: this.state.title,
-         author: this.state.author,
-         opener: this.state.opener,
-         content: this.state.content,
-         image: this.state.image,
-         tag: this.state.tag,
-         userId: this.state.userId
-     }
+    const updatedPost = {
+      title: this.state.title,
+      author: this.state.author,
+      opener: this.state.opener,
+      content: this.state.content,
+      image: this.state.image,
+      tag: this.state.tag,
+      userId: this.state.userId
+    }
     //  console.log(newPost)
-     updatePost(this.state.id,updatedPost).then(res => {
-     //   if(res) {
-         this.props.history.push("/myposts")
-     //   }
-     }).catch(err => {
-         console.log(err);
-         alert('No post!');
-     })
-   }
+    updatePost(this.state.id, updatedPost).then(res => {
+      //   if(res) {
+      this.props.history.push("/myposts")
+      //   }
+    }).catch(err => {
+      console.log(err);
+      alert('No post!');
+    })
+  }
 
-   FullPost(id){
+  FullPost(id) {
     console.log('blogpostId: ' + id)
     localStorage.setItem('blogPostId', JSON.stringify(id));
-    
-   }
+
+  }
+
+  getDateWithoutTime(date) {
+    var newdate = date.split('T');
+    var onlydate = newdate[0];
+    // this.setState({ date : onlydate})
+    return onlydate;
+  }
 
   render() {
     // const { title, opener, content, image, tag } = this.props;
     return (
       <>
-        <div>
+        <header class="masthead" style={{ backgroundImage: "url('https://i.pinimg.com/564x/3f/8a/76/3f8a76634c0c67a39d0eb3b10a894dd0.jpg')" }}>
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                  <h1 style={{ color: "white" }}> My Posts so far </h1>
+                  {/* <span class="subheading">All by {this.state.author}</span> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {
+          this.state.myposts ?
+            this.state.myposts.map((item, i) =>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-preview">
+                      {/* <a href="http://localhost:3000/myposts/full"> */}
+                        <div className="todo">
+                          <div className="imagenlista">
+                            <img src={item.image} style={{ maxWidth: 200 }} />
+                          </div>
+                          <div className="contenidopreview">
+                            <h2 class="post-title">
+                              {item.title}
+                            </h2>
+                            <h5 class="post-subtitle">
+                              {item.opener}
+                            </h5>
+                       {/* </a> */}
+                          <p class="post-meta"> Posted by
+                      <a href="#">  {item.author}  </a>
+                            on   {this.getDateWithoutTime(item.createdAt)}</p>
+                            <Link to="/myposts/full">
+                          <Button variant="dark" onClick={() => this.FullPost(item.id)}>Read more</Button>
+                          </Link>
+                          <Button variant="light" onClick={this.editItem}>Edit Post</Button>
+                          <Button onClick={() => this.delete(item.id)}>Remove</Button>
+                        </div>
+                    </div>
+                    </div>
+                    <hr />
+
+                    <div class="clearfix">
+                      <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+            :
+            <h3> No tienes ningun post :(</h3>
+        }
+
+
+        {/* <div>
+          <h3 className="title">Your posts</h3>
           {
-            this.state.posts ?
-              this.state.posts.map((item, i) =>
+            this.state.myposts ?
+              this.state.myposts.map((item, i) =>
                 <div>
-                  <CardDeck>
-                    <Card>
-                      <Card.Img variant="top" src={item.image} />
-                      <Card.Body>
-                        <Card.Title>{item.title}</Card.Title>
-                        <Card.Text>
-                          <div> {item.author}
-                            <p>Publicado : {item.createdAt}</p></div>
+                  <div className="flexx">
+                    <CardDeck>
+                      <Card bg="light" text="gray" style={{ width: '18rem' }} border="secondary" style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src={item.image} />
+                        <Card.Body>
+                          <Card.Title> <h2 className="Posttitle">{item.title} </h2> </Card.Title>
+                          <Card.Text>
+                            <div>By {item.author} on {this.getDateWithoutTime(item.createdAt)}
+                              </div>
+                            <hr />
+                            <div> {item.opener} </div>
+                          </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                          <p className="tag">#{item.tag}</p>
                           <hr />
-                          <div> {item.id} </div>
-                          <hr />
-                          <div> {item.opener} </div>
-                        </Card.Text>
-                      </Card.Body>
-                      <Card.Footer>
-                        <p>#{item.tag}</p>
-                        <hr />
-                        <small className="text-muted">Ultima modificacion ... {item.updatedAt}</small>
-                        {/* <button type="submit" onClick={e => this.delete(e, item)}> Delete </button> */}
-                      </Card.Footer>
-                      {/* <Button variant="light" onClick={() => this.update(item.id)}>Edit</Button> */}
-                      <Button variant="light" onClick={this.editItem}>Edit Post</Button>
-                      <Button onClick={() => this.delete(item.id)}>Remove</Button>
-                      <Button variant="light" onClick={() => this.FullPost(item.id)}>Ver Completo</Button>
-                      {/* <Button variant="light" onClick={this.remove}> Eliminate Post</Button> */}
-                      <Modal show={this.props.show} onHide={this.props.hide}>
-                        <Modal.Header closeButton>
-                          <Modal.Title>Edit Item</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <PostForm onSubmit={this.onSubmit} show={this.state.editing} hide={this.closeModal} {...this.props} />
-                        </Modal.Body>
-                      </Modal>
-                    </Card>
-                  </CardDeck>
+                          <small className="text-muted">Last update ... {item.updatedAt}</small>
+                         
+                        </Card.Footer>
+                     
+                        <Button variant="light" onClick={this.editItem}>Edit Post</Button>
+                        <Button onClick={() => this.delete(item.id)}>Remove</Button>
+
+                        <Link to="/myposts/full">
+                          <Button variant="dark" onClick={() => this.FullPost(item.id)}>See full post</Button>
+                        </Link>
+                        <Modal show={this.props.show} onHide={this.props.hide}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Edit Item</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            <PostForm onSubmit={this.onSubmit} show={this.state.editing} hide={this.closeModal} {...this.props} />
+                          </Modal.Body>
+                        </Modal>
+                      </Card>
+                    </CardDeck>
+                  </div>
                 </div>
               )
               :
-              <h3>Wait.. estamos buscando tus posts</h3>
+              <h3> No tienes ningun post :(</h3>
           }
-        </div>
+        </div> */}
       </>
     )
   }

@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom/';
 import { login } from '../userFunction';
 
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
-// import Alert from 'react-bootstrap/Alert';
-
-// import { getDataWithQuery } from '../../utils/api';
-// import storage from '../../utils/storage';
+import './Login.css';
 
 
 class Login extends Component {
@@ -43,6 +37,7 @@ class Login extends Component {
 
   render() {
     return (
+      <div className="logincontainer">
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
@@ -79,6 +74,7 @@ class Login extends Component {
             </form>
           </div>
         </div>
+      </div>
       </div>
     )
   }

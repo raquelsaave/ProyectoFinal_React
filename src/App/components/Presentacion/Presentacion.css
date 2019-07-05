@@ -1,0 +1,12 @@
+.bienvenido{
+    display: flex;
+    align-items: center
+}
+.imgbien{
+    align-items: center;
+    justify-content: center;
+    width:30%
+}
+.contbien{
+    align-items: center
+}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { comments } from '../../../../app_server/db';
 
 export const register = newUser => {
     return axios
@@ -56,6 +57,16 @@ export const deletePost = blogPostId => {
         })
 }
 
+export const deleteComm= (blogPostId,commentId) => {
+    return axios
+        .delete(`http://localhost:5000/users/myposts/full/comments/${blogPostId}/${commentId}`)
+        .then(response => {
+            console.log('Blog Post eliminado: ' + response.data)
+        }).catch(err => {
+            console.log(err);
+        })
+}
+
 export const updatePost = (blogPostId, updatedPost) => {
     return axios
         .patch(`users/myposts/${blogPostId}`, {
@@ -72,6 +83,17 @@ export const updatePost = (blogPostId, updatedPost) => {
         })
 }
 
-
+export const createComment = newComment => {
+    return axios
+        .post('http://localhost:5000/users/myposts/full', {
+            content: newComment.content,
+            blogPostId: newComment.blogPostId,
+            author:newComment.author
+        }).then(response => {
+            console.log(response)
+        }).catch(err => {
+            console.log(err);
+        })
+}
 
 

@@ -15,6 +15,7 @@ import './Searchbar.css';
 const SearchBar = () => {
   return (
     <>
+    <div className="search">
     <Form inline>
     <div className="Icon">
     <FontAwesomeIcon icon={faSearch} /> 
@@ -23,6 +24,7 @@ const SearchBar = () => {
     {/* <input type="text" className="input" placeholder="Search..." /> */}
     <Button type="submit">¡Buscar!</Button>
     </Form>
+    </div>
     </>
   );
 }

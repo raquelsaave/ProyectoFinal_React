@@ -1,0 +1,29 @@
+.todo{
+    display: flex;
+}
+
+.imagen{
+    width: 20%;
+    text-align: center;
+}
+
+.perfil{
+    width: 80%;
+    text-align: center;
+}
+
+.imagen img{
+    width: 150px;
+    height: 150px;
+}
+
+/* .container{
+    background-color: darkgrey
+} */
+
+.jumbotron.mt-5{
+    background-color: rgba(32, 134, 134, 0.479)
+}
+.thecontainerofthecontainer{
+    margin:40px;
+}
