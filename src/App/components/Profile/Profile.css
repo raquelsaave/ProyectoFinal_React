@@ -27,3 +27,30 @@
 .thecontainerofthecontainer{
     margin:40px;
 }
+
+.profilecontainer{
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.contentprofilecontainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px;
+}
+
+@media (min-width: 650px ) {
+    .profilecontainer {
+        background-position: center center;
+    }
+
+    .contentprofilecontainer {
+        align-items: flex-end;
+        justify-content: center;
+    }
+}

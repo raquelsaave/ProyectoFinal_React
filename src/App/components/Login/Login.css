@@ -1,6 +1,28 @@
-/* .logincontainer{
-    background-color: cornflowerblue;
-    width: 40%;
-    align-self: center ;
-    text-align: center;
-} */
+
+
+.logincontainer{
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.contentlogincontainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px;
+}
+
+@media (min-width: 650px ) {
+    .logincontainer {
+        background-position: center center;
+    }
+
+    .contentlogincontainer {
+        align-items: flex-end;
+        justify-content: center;
+    }
+}

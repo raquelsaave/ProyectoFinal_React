@@ -65,21 +65,3 @@ class List extends Component {
 
 export default List;
 
-{/* BEFORE! <>
-<div>
-  {
-    this.state.posts ?
-      this.state.posts.map((item) =>
-        <div>
-          <h3>{item.id}</h3>
-          <h3>{item.title}</h3>
-          <h3>{item.content}</h3>
-          <h3>{item.createdAt}</h3>
-        </div>
-      )
-      :
-      <h3>Wait.. estamos buscando tus posts</h3>
-
-  }
-</div>
-</> */}

@@ -4,6 +4,8 @@ import { login } from '../userFunction';
 
 import './Login.css';
 
+import desktopImage from '../Bienvenida/88847.jpg';
+import mobileImage from '../Bienvenida/88847.jpg';
 
 class Login extends Component {
  constructor() {
@@ -36,8 +38,10 @@ class Login extends Component {
   }
 
   render() {
+    const imageUrl = window.innerWidth >= 650 ? desktopImage : mobileImage;
     return (
-      <div className="logincontainer">
+      <div className="logincontainer" style={{backgroundImage: `url(${imageUrl})` }}>
+        <div className="contentlogincontainer">
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
@@ -49,7 +53,7 @@ class Login extends Component {
                 type="email"
                 className="form-control"
                 name="email"
-                placeholder="enter email"
+                placeholder="Enter email"
                 value={this.state.email}
                 onChange={this.onChange}
                 />
@@ -60,20 +64,21 @@ class Login extends Component {
                 type="password"
                 className="form-control"
                 name="password"
-                placeholder="enter password"
+                placeholder="Enter password"
                 value={this.state.password}
                 onChange={this.onChange}
                 />
               </div>
               <button 
               type="submit"
-              className="btn btn-lg btn-primary btn-block"
+              className="btn btn-lg btn-primary"
               >
                 Sign In
               </button>
             </form>
           </div>
         </div>
+      </div>
       </div>
       </div>
     )
@@ -84,86 +89,3 @@ class Login extends Component {
 }
 
 export default Login;
-
-
-// constructor(props) {
-//   super(props);
-//   this.state = {
-//     username: '',
-//     password: '',
-//     loginError: false,
-//     loggedIn: false,
-//   }
-
-//   this.updateUsername = this.updateUsername.bind(this);
-//   this.updatePassword = this.updatePassword.bind(this);
-//   this.checkUser = this.checkUser.bind(this);
-//   this.logIn = this.logIn.bind(this);
-// }
-
-// updateUsername({ target }) {
-//   this.setState({ username: target.value, loginError: false });
-// }
-
-// updatePassword({ target }) {
-//   this.setState({ password: target.value, loginError: false });
-// }
-
-// checkUser(userData) {
-//   if (userData && userData.length) {
-//     storage.store('user', userData[0]);
-//     this.setState({ loggedIn: true });
-//     console.log(storage.retreive('user'));
-//   } else {
-//     this.setState({ loginError: true });
-//   }
-// }
-
-// logIn() {
-//   getDataWithQuery(({ ...this.state }), 'users').then(this.checkUser);
-// }
-
-// render() {
-//   let alert = null;
-//   if (this.state.loggedIn) {
-//     return (<Redirect to="/explore" />);
-//   }
-//   if (this.state.loginError) {
-//     alert = (<Alert variant="danger">Check password or username!</Alert>);
-//   }
-
-//   const  {username, password} = this.props;
-
-//   return (
-//     <Modal show={this.props.show} onHide={this.props.hide}>
-//       <Modal.Header closeButton>
-//         <Modal.Title>Log In</Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body>
-//         <Form.Group controlId="formUsername">
-//           <Form.Label>Username</Form.Label>
-//           <Form.Control
-//             type="text"
-//             placeholder="Username"
-//             value={this.state.username}
-//             onChange={this.updateUsername}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="formBasicPassword">
-//           <Form.Label>Password</Form.Label>
-//           <Form.Control
-//             type="password"
-//             placeholder="Password"
-//             value={this.state.password}
-//             onChange={this.updatePassword}
-//           />
-//         </Form.Group>
-//       </Modal.Body>
-//       <Modal.Footer>
-//         <Button variant="primary" type="button" onClick={this.logIn}>Log In</Button>
-//       </Modal.Footer>
-//       {alert}
-//       </Modal>
-//     );
-// }

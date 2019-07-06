@@ -53,11 +53,10 @@
    /* background-color: #464646;  */
 /* } */
 
-body{
-  background-color: rgba(114, 114, 117, 0.534);
-}
+/* body{
+  background-color: rgba(30, 30, 31, 0.534);
+} */
 
 .copyright.text-muted{
   text-align: center;
-
 }

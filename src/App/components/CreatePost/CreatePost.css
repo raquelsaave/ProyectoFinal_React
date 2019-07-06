@@ -1,6 +1,31 @@
 .Post{
-    color:white;
+    background-color:white;
 }
-label{
-    color:white;
+
+
+.createpostcontainer{
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.contentcreatepostcontainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px;
+}
+
+@media (min-width: 650px ) {
+    .createpostcontainer {
+        background-position: center center;
+    }
+
+    .contentcreatepostcontainer {
+        align-items: flex-end;
+        justify-content: center;
+    }
 }

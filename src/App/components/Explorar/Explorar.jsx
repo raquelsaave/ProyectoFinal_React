@@ -59,106 +59,52 @@ class Explorar extends Component {
 
     render() {
         return (
-            <> 
-            <div className="SearchBar">
-             <SearchBar /> 
-             </div>
-                {/* <form>
-              <div className="form-group">
-                <label htmlFor="buscar">Buscar</label>
-                <input
-                type="text"
-                className="form-control"
-                name="buscar"
-                placeholder="Busca un tag"
-                value={this.state.title}
-                onChange={this.onChange}
-                />
-              </div>
-              <button 
-              type="submit"
-              className="btn btn-lg btn-primary btn-block"
-              > <FontAwesomeIcon icon={faSearch} />
-                Buscar!
-              </button>
-              </form> */}
-            <div>
-            {
-          this.state.posts ?
-            this.state.posts.map((item, i) =>
-            <div class="container">
-            <hr />
-                <div class="row">
-                  <div class="col-lg-8 col-md-10 mx-auto">
-                    <div class="post-preview">
-                      {/* <a href="http://localhost:3000/myposts/full"> */}
-                        <div className="todo">
-                          <div className="imagenlista">
-                            <img src={item.image} style={{ maxWidth: 200 }} />
-                          </div>
-                          <div className="contenidopreview">
-                            <h2 class="post-title">
-                              {item.title}
-                            </h2>
-                            <h5 class="post-subtitle">
-                              {item.opener}
-                            </h5>
-                       {/* </a> */}
-                          <p class="post-meta"> Posted by
-                      <a href="#">  {item.author}  </a>
-                            on  {item.createdAt}</p>
-                            <Link to="/myposts/full">
-                          <Button variant="dark" onClick={() => this.FullPost(item.id)}>Read more</Button>
-                          </Link>
-                        </div>
-                    </div>
-                    </div>
-                    <hr />
-
-                    <div class="clearfix">
-                      <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-            :
-            <h3> No tienes ningun post :(</h3>
-        }
-
-                {/* <div>
+            <>
+                <div>
                     {
                         this.state.posts ?
                             this.state.posts.map((item, i) =>
-                                <div>
-                                    <CardDeck width={50}> 
-                                        <Card>
-                                            <Card.Img variant="top" src={item.image} />
-                                            <Card.Body>
-                                                <Card.Title>{item.title}</Card.Title>
-                                                <Card.Text>
-                                                    <div> By {item.author}
-                                                        <p>Published : {item.createdAt}</p></div>
-                                                    <hr />
-                                                    <div> {item.opener} </div>
-                                                </Card.Text>
-                                            </Card.Body>
-                                            <Card.Footer>
-                                                <p>#{item.tag}</p>
-                                                <hr />
-                                                <small className="text-muted">Last update ... {item.updatedAt}</small>
+                                <div class="container" style={{ backgroundColor: "#D9D7BA" }}>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-10 mx-auto">
+                                            <div class="post-preview">
 
-                                            </Card.Footer>
-                                            <Link to="/myposts/full">
-                                                <Button variant="primary" onClick={() => this.FullPost(item.id)}>See full post</Button>
-                                            </Link>
-                                        </Card>
-                                    </CardDeck>
+                                                <div className="todo">
+                                                    <div className="imagenlista">
+                                                        <img src={item.image} style={{ maxWidth: 200 }} />
+                                                    </div>
+                                                    <div className="contenidopreview">
+                                                        <h2 class="post-title">
+                                                            {item.title}
+                                                        </h2>
+                                                        <h5 class="post-subtitle">
+                                                            {item.opener}
+                                                        </h5>
+
+                                                        <p class="post-meta"> Posted by
+                                                         <a href="#">  {item.author}  </a>
+                                                            on  {item.createdAt}</p>
+                                                        <Link to="/myposts/full">
+                                                            <Button variant="dark" onClick={() => this.FullPost(item.id)}>Read more</Button>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+
+
+                                        </div>
+                                    </div>
                                 </div>
                             )
                             :
-                            <h3>Wait.. estamos buscando tus posts</h3>
-                    } */}
+                            <h3> No tienes ningun post :(</h3>
+                    }
+                    <div class="clearfix">
+                        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                    </div>
+
                 </div>
             </>
         )

@@ -1,13 +1,5 @@
 import React from 'react';
 
-// Components
-
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-solid-svg-icons'
-
-
 
 const Footer = () => {
 

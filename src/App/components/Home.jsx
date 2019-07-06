@@ -18,8 +18,7 @@ class Home extends Component {
       }
       this.createUser = this.createUser.bind(this);
       this.closeModal = this.closeModal.bind(this);
-      // this.loginUser = this.loginUser.bind(this);
-      // this.closeLogin = this.closeLogin.bind(this);
+   
   }
 
   createUser() {
@@ -29,13 +28,7 @@ class Home extends Component {
   closeModal() {
       this.setState({ creating: false });
   }
-  // loginUser() {
-  //     this.setState({ login: true });
-  // }
-
-  // closeLogin() {
-  //     this.setState({ login: false });
-  // }
+  
   render() {
 
       return (
@@ -45,13 +38,13 @@ class Home extends Component {
                       <h1>Bienvenido a Bloggosfera</h1>
                   </div>
                   <div className="body">
-                      {/* <Button variant="primary" onClick={this.loginUser} >Log In</Button> */}
+                     
                       <Button variant="primary" >Log In</Button>
                       <Button variant="secondary" onClick={this.createUser}> <FontAwesomeIcon icon={faHeart} /> Create Account</Button>
                   </div>
               </div>
               <CreateUser show={this.state.creating} hide={this.closeModal} />
-              {/* <Login show={this.state.login} hide={this.closeLogin}/> */}
+            
           </>
       )
   }
@@ -60,19 +53,3 @@ class Home extends Component {
 export default Home;
 
 
-// class Home extends Component {
-//   render() {
-//     return (
-//     <div className="App">
-//       <h1>Bienvenido a Bloggosfera</h1>
-//       {/* Link to List.js */}
-//       <Link to={'./list'}>
-//         <button variant="raised">
-//             Lista!
-//         </button>
-//       </Link>
-//     </div>
-//     );
-//   }
-// }
-// export default Home;

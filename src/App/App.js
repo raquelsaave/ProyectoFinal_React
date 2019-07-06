@@ -4,23 +4,6 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './App.css';
-// import Home from './components/Home';
-// import List from './components/List';
-// import Header from './components/Header/Header';
-
-// import React from 'react';
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//     <Route component={Header} />
-//     <Route exact path="/" component={Home} />
-//     <Route path="/explore" component={List} />
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
 
 import Header from './components/Header/Header';
 import Login from './components/Login/Login'
@@ -29,11 +12,13 @@ import Profile from './components/Profile/Profile'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import CreatePost from './components/CreatePost/CreatePost';
 import MyPosts from './components/MyPosts/MyPosts';
-import PostList from './components/PostList/PostList'
 import FullPost from './components/FullPost/FullPost'
 import Explorar from './components/Explorar/Explorar'
 import Presentacion from './components/Presentacion/Presentacion'
 import Footer from './components/Footer/Footer'
+import Search from './components/Search/Search';
+import UpdatePost from './components/UpdatePost/UpdatePost'
+
 
 class App extends Component {
   render () {
@@ -50,8 +35,9 @@ class App extends Component {
               <Route exact path="/createpost" component={CreatePost} />
               <Route exact path="/myposts" component={MyPosts} />
               <Route exact path="/myposts/full" component={FullPost} />
-              {/* <Route exact path="/myposts" component={PostList} />  */}
               <Route exact path="/explore" component={Explorar} />
+              <Route exact path="/search" component={Search} />
+              <Route exact path="/updatepost" component={UpdatePost} />
           </div>
           <Footer />
           </div>

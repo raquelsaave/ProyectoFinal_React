@@ -10,3 +10,35 @@
 .contbien{
     align-items: center
 }
+
+.Presentacion {
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.Presentacion-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px;
+    color:white;
+}
+
+@media (min-width: 650px ) {
+    .Presentacion {
+        background-position: center center;
+    }
+
+    .Presentacion-content {
+        /* align-items: flex-end; */
+        justify-content: center;
+    }
+}
+
+.iconos{
+    font-size: 25px;
+}

@@ -69,12 +69,14 @@ export const deleteComm= (blogPostId,commentId) => {
 
 export const updatePost = (blogPostId, updatedPost) => {
     return axios
-        .patch(`users/myposts/${blogPostId}`, {
+        .patch(`http://localhost:5000/users/myposts/${blogPostId}`, {
             title: updatedPost.title,
+            author: updatePost.author,
             opener: updatedPost.opener,
             content: updatedPost.content,
             image: updatedPost.image,
             tag: updatedPost.tag,
+            userId: updatePost.userId
         })
         .then(response => {
             console.log('Blog Post actualizado: ' + response.data)

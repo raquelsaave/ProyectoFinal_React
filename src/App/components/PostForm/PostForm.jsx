@@ -11,23 +11,29 @@ class PostForm extends Component {
 
         this.state = {
             title: props.data.title || '',
+            author: props.data.author || '',
             opener: props.data.opener || '',
             content: props.data.content || '',
             image: props.data.image || '',
             tag: props.data.tag || '',
-            author:'',
-            userId:''
+            userId: props.data.userId || ''
         };
 
         this.updateTitle = this.updateTitle.bind(this);
+        this.updateAuthor = this.updateAuthor.bind(this);
         this.updateOpener = this.updateOpener.bind(this);
         this.updateContent = this.updateContent.bind(this);
         this.updateImage = this.updateImage.bind(this);
         this.updateTag = this.updateTag.bind(this);
+        this.updateUserId = this.updateUserId.bind(this);
     }
     
     updateTitle({ target }) {
         this.setState({ title: target.value });
+    }
+
+    updateAuthor({ target }) {
+        this.setState({ author: target.value });
     }
 
     updateOpener({ target }) {
@@ -41,63 +47,64 @@ class PostForm extends Component {
     updateImage({ target }) {
         this.setState({ image: target.value });
     }
+
     updateTag({ target }) {
         this.setState({ tag: target.value });
     }
 
-    componentDidMount() {
+    updateUserId({ target }) {
+        this.setState({ userId: target.value });
+    }
+
+    componentDidMount(){
         const token = localStorage.getItem('usertoken');
         const decoded = jwt_decode(token)
         this.setState({
             userId: decoded.id,
             author: decoded.username
         });
-        console.log(decoded)
-      }
+    }
 
     render(){
         return(
             <Form>
                 <Form.Group>
-                    <Form.Label> Titulo </Form.Label>
+                    <Form.Label> Title </Form.Label>
                     <Form.Control
                         type="text"
-                        palceholder="Item Name"
+                        palceholder="Title"
                         value={this.state.title}
                         onChange={this.updateTitle}
                     />
-                    <Form.Label> Primer Parrafo </Form.Label>
+                    <Form.Label> Opener </Form.Label>
                     <Form.Control
-                        as="textarea"
-                        rows="3"
+                        type="text"
+                        palceholder="Opener"
                         value={this.state.opener}
                         onChange={this.updateOpener}
                     />
-                    <Form.Label> Contenido </Form.Label>
+                    <Form.Label> Content </Form.Label>
                     <Form.Control
                         as="textarea"
-                        rows="10"
-                        placeholder="value"
+                        rows="5"
                         value={this.state.content}
                         onChange={this.updateContent}
                     />
-                    <Form.Label> Imagen </Form.Label>
+                    <Form.Label> Image(url) </Form.Label>
                     <Form.Control
                         type="text"
-                        min="0"
-                        placeholder="value"
+                        palceholder="Image"
                         value={this.state.image}
                         onChange={this.updateImage}
                     />
                     <Form.Label> Tag </Form.Label>
                     <Form.Control
                         type="text"
-                        min="0"
-                        placeholder="value"
+                        palceholder="Tag"
                         value={this.state.tag}
                         onChange={this.updateTag}
                     />
-                    <Button type="submit" variant="primary" onClick={() => this.props.submit({...this.state})}> Save </Button>
+                    <Button variant="primary" onClick={() => this.props.submit({...this.state})}> Save </Button>
                 </Form.Group>
             </Form>
         )
